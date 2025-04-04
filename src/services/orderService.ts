@@ -7,6 +7,7 @@ import { Payment } from "../models/paymentModel";
 import { DummyPaymentGateway } from "./dummyPaymentGateway";
 import { paginate } from "../utils/pagination";
 import dayjs from "dayjs";
+import { clearCart } from "./cartService";
 
 export const createOrder = async (
   userId: string,
@@ -79,6 +80,7 @@ export const createOrder = async (
       order.paymentStatus = "completed";
       order.status = "paid";
       order.transactionId = paymentResult.transactionId;
+      await clearCart(userId); // Clear cart after successful payment
     } else {
       order.paymentStatus = "failed";
       order.status = "pending";

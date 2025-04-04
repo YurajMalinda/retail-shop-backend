@@ -10,6 +10,7 @@ import { paymentRoutes } from "./routes/paymentRoutes";
 import { customerRoutes } from "./routes/customerRoutes";
 import { userRoutes } from "./routes/userRoutes";
 import { adminRoutes } from "./routes/adminRoutes";
+import { cartRoutes } from "./routes/cartRoutes";
 
 dotenv.config();
 
@@ -32,6 +33,7 @@ const startServer = async () => {
     app.use("/api/customers", customerRoutes);
     app.use("/api/users", userRoutes);
     app.use("/api/admin", adminRoutes);
+    app.use("/api/cart", cartRoutes);
 
     app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
       console.error(err.stack);
